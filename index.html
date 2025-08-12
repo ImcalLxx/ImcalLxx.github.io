@@ -52,7 +52,9 @@
 <p>注：推荐将本程序设为开机自启动项，将快捷方式放到“C:\Users\班级希沃的用户名\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup”下即可</p>
 <div class="markdown-heading"><h2 class="heading-element">课表文件格式（txt）</h2><a id="user-content-课表文件格式txt" class="anchor" aria-label="Permalink: 课表文件格式（txt）" href="#课表文件格式txt"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>如下是课表文件的一个示例：</p>
-<pre><code>周一:数学,外语,生物,体育,化学,物理,地理,政治,自习
+<pre><code>
+```
+周一:数学,外语,生物,体育,化学,物理,地理,政治,自习
 周二:数学,语文,外语,物理,化学,信息技术,历史,自习,自习
 周三:数学,物理,生物,外语,化学,自习,体育,政治,自习
 周四:数学,外语,化学,体育,生物,物理,音乐,政治,自习
@@ -65,6 +67,7 @@
 晚课1:语文,化学,物理,外语,数学
 晚课2:语文,生物,物理,外语,数学
 晚课3:语文,生物,化学,外语,数学
+```
 </code></pre>
 <p>在一个课表文件中，一行内容由如下几部分构成：</p>
 <ol>
@@ -76,7 +79,10 @@
 </li>
 <li>
 <p>课程：如第一行</p>
-<pre><code>周一:数学,外语,生物,体育,化学,物理,地理,政治,自习
+<pre><code>
+```
+周一:数学,外语,生物,体育,化学,物理,地理,政治,自习
+```
 </code></pre>
 <p>每个课程以<strong>英文</strong>逗号分隔，逗号前后有无空格不影响</p>
 <p>另外，建议使用课程规范名称，如写”信息技术“而不是”信息“，写”外语“而不是”英语“，<strong>不支持缩写（如用”数“代替”数学“）</strong></p>
@@ -90,7 +96,9 @@
 </ol>
 <div class="markdown-heading"><h2 class="heading-element">时间表文件格式（txt）</h2><a id="user-content-时间表文件格式txt" class="anchor" aria-label="Permalink: 时间表文件格式（txt）" href="#时间表文件格式txt"><span aria-hidden="true" class="octicon octicon-link"></span></a></div>
 <p>如下是时间表文件的一个示例：</p>
-<pre><code>平日时间:
+<pre><code>
+```
+平日时间:
 第一节课:07:30-08:10
 课间:08:10-08:20
 **省略**
@@ -113,6 +121,7 @@
 第四节课:13:30-14:40
 课间:14:40-14:50
 自习:14:50-16:20
+```
 </code></pre>
 <ol>
 <li>
@@ -123,7 +132,10 @@
 </li>
 <li>
 <p>时间：如</p>
-<pre><code>第一节课:07:30-08:10
+<pre><code>
+```
+第一节课:07:30-08:10
+```
 </code></pre>
 <p>在前缀后紧跟<strong>英文冒号</strong>或者<strong>英文逗号</strong>，之后的内容便会被解析为时间段信息</p>
 <p>对于一个时间段，应使用“<strong>mm:hh-mm:hh</strong>”的格式书写（<strong>用英文标点</strong>），其中数字<strong>必须写两位</strong>，如写”09“而不写”9“</p>
@@ -136,20 +148,26 @@
 <p>即将上面”mm:hh“的单个时间点换成”<strong>mm:hh/mm:hh</strong>“的双重时间点，中间用”/“隔开，程序会根据位置<strong>自动解析</strong>哪个时间点属于单周，哪个时间点属于双周</p>
 <p>双重时间点不止可用于午休，还可用于其他地方</p>
 <p>不过注意：在写双重时间点时，<strong>务必确认上下时间衔接</strong>，下面给出了一个错误示例：</p>
-<pre><code>第五节课:11:15-11:55/12:05
+<pre><code>
+```
+第五节课:11:15-11:55/12:05
 午休:11:55/12:00-13:30
            ^^^^   这里的时间与上面的"12:05"未衔接上
+```
 </code></pre>
 <p>这样做本程序不会报错，也不会执行检查，会将这个时间数据写入到ClassIsland的文件中，但是ClassIsland会出什么问题我就不清楚啦（</p>
 </li>
 <li>
 <p>分割
 在一个时间表内，既需要写平日时间，又需要写周六时间，于是我们需要分割：</p>
-<pre><code>平日课表:
+<pre><code>
+```  
+平日课表:
 *省略*
 
 周六课表:
 *省略*
+```
 </code></pre>
 <p>本程序会默认把第一个读取到的<strong>视为平日时间</strong>，<strong>在读取到标识符后</strong>才会开始读周六课表，你可能没有听懂什么意思，只需要记住：</p>
 <p><strong>在周六课表之前，添加“周六课表”这几个字</strong>（其实只要含有“周六”二字即可）。同上，空行不是必须的，但可以添加作为分割，程序会忽略的</p>
